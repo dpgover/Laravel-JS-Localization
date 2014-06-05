@@ -24,12 +24,16 @@ In your Laravel app go to `app/config/app.php` and add the following service pro
         ...
     )
 
+Run:
+
+	php artisan config:publish mariuzzo/js-localization
+
 That's it!
 
 Usage
 -----
 
-This project comes with a command that generate the JavaScript version of all your messages found at: `app/lang` directory. The resulting JavaScript file will have the whole bunch of messages and a thin library similar to Laravel's `Lang` class.
+This project comes with a command that generate the JavaScript version of all the translation keys specified in the configuration file, taking all the files in `app/lang` directory. The resulting JavaScript file will have the whole bunch of messages and a thin library similar to Laravel's `Lang` class.
 
 **Generating JS messages**
 
