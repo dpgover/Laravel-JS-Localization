@@ -16,16 +16,21 @@
         "email": "me@gpopoteur.com",
         "homepage": "https://github.com/gpopoteur",
         "role": "Developer"
+    }, {
+	    "name": "Dario Govergun",
+	    "email": "dpgover@gmail.com",
+	    "homepage": "https://github.com/dpgover",
+	    "role": "Developer"
     }],
     "support": {
-        "issues": "https://github.com/rmariuzzo/laravel-js-localization/issues",
-        "source": "https://github.com/rmariuzzo/laravel-js-localization"
+        "issues": "https://github.com/dpgover/laravel-js-localization/issues",
+        "source": "https://github.com/dpgover/laravel-js-localization"
     },
     "require": {
         "php": ">=5.3.0",
-        "illuminate/support": "4.1.*",
-        "illuminate/console": "4.1.*",
-        "illuminate/filesystem": "4.1.*",
+        "illuminate/support": "~4.1",
+        "illuminate/console": "~4.1",
+        "illuminate/filesystem": "~4.1",
         "tedivm/jshrink": "0.5.*"
     },
     "require-dev": {

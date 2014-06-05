@@ -33,35 +33,38 @@ class LangJsGenerator
 
     protected function getMessages()
     {
-        $messages = array();
-        $path = app_path().'/lang';
+	    $messages = [];
+	    $path = app_path() . '/lang';
 
-        if ( ! $this->file->exists($path))
-        {
-            throw new \Exception("${path} doesn't exists!");
-        }
+	    if (!$this->file->exists($path))
+	    {
+		    throw new \Exception("${path} doesn't exists!");
+	    }
 
-        foreach ($this->file->allFiles($path) as $file) {
+	    $messageKeys = \Config::get('js-localization::config.messages');
 
-            $pathName = $file->getRelativePathName();
+	    $langs = $this->file->directories($path);
+	    foreach ($langs as $lang)
+	    {
+		    $lang = basename($lang);
+		    foreach($messageKeys as $key)
+		    {
+			    if(\Lang::has($key, $lang))
+			    {
+				    $jsKey = $lang . '.' . $key;
+				    $messages[$jsKey] = \Lang::get($key, [], $lang);
+			    }
+		    }
+	    }
 
-            if ( $this->file->extension($pathName) !== 'php' ) continue;
-
-            $key = substr($pathName, 0, -4);
-            $key = str_replace('\\', '.', $key);
-            $key = str_replace('/', '.', $key);
-
-            $messages[ $key ] = include "${path}/${pathName}";
-        }
-
-        return $messages;
+	    return $messages;
     }
 
     protected function prepareTarget($target)
     {
         $dirname = dirname($target);
 
-        if ( ! $this->file->exists($dirname) )
+        if (!$this->file->exists($dirname))
         {
             $this->file->makeDirectory($dirname);
         }

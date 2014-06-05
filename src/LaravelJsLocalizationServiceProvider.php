@@ -20,4 +20,23 @@ class LaravelJsLocalizationServiceProvider extends ServiceProvider
     {
         return array('localization.js');
     }
+
+	public function boot()
+	{
+		$this->package('mariuzzo/js-localization');
+
+		$this->registerNamespaces();
+	}
+
+	private function registerNamespaces()
+	{
+		if (\File::isDirectory(app_path() . '/config/packages/mariuzzo/js-localization'))
+		{
+			\Config::addNamespace('js-localization', app_path() . '/config/packages/mariuzzo/js-localization');
+		}
+		else
+		{
+			\Config::addNamespace('js-localization', __DIR__.'/../config');
+		}
+	}
 }
