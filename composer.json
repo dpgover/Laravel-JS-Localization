@@ -1,10 +1,10 @@
 {
-    "name": "mariuzzo/laravel-js-localization",
+    "name": "dpgover/laravel-js-localization",
     "description": "Laravel Localization in JavaScript",
     "version": "1.0.2",
     "type": "library",
     "keywords": ["laravel", "localization", "i18n", "javascript", "js", "lang"],
-    "homepage": "https://github.com/rmariuzzo/laravel-js-localization",
+    "homepage": "https://github.com/dpgover/laravel-js-localization",
     "license": "MIT",
     "authors": [{
         "name": "Rubens Mariuzzo",
