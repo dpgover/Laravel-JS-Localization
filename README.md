@@ -26,7 +26,7 @@ In your Laravel app go to `app/config/app.php` and add the following service pro
 
 Run:
 
-	php artisan config:publish mariuzzo/js-localization
+	php artisan config:publish --path=vendor/dpgover/laravel-js-localization/config dpgover/js-localization
 
 That's it!
 
