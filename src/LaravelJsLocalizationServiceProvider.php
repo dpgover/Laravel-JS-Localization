@@ -30,9 +30,9 @@ class LaravelJsLocalizationServiceProvider extends ServiceProvider
 
 	private function registerNamespaces()
 	{
-		if (\File::isDirectory(app_path() . '/config/packages/dpgover/laravel-js-localization'))
+		if (\File::isDirectory(app_path() . '/config/packages/dpgover/js-localization'))
 		{
-			\Config::addNamespace('js-localization', app_path() . '/config/packages/dpgover/laravel-js-localization');
+			\Config::addNamespace('js-localization', app_path() . '/config/packages/dpgover/js-localization');
 		}
 		else
 		{
