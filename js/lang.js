@@ -247,6 +247,25 @@
          * Beside numbers, you can use -Inf and +Inf for the infinite.
          */
 
+        if(interval[0] == '{')
+        {
+            var index = interval.slice(1, interval.length-1).split(',').indexOf(count.toString());
+            if(index > -1)
+            {
+                return true;
+            }
+        }
+        // Only supports inclusive ranges:
+        else if(interval[0] == '[')
+        {
+            var range = interval.replace('Inf', 'Infinity');
+            range = range.slice(1, range.length-1).split(',');
+            if(count >= parseFloat(range[0]) && count <= parseFloat(range[1]))
+            {
+                return true;
+            }
+        }
+
         return false;
     };
 
