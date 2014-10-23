@@ -89,6 +89,8 @@
         return this._getMessage(key) !== null;
     };
 
+    var regexFiniteSet = /{(\-?\d+(\.\d+)?[,\-?\d+(\.\d+)?]*)}\s(.+)/;
+    var regex = /({(\-?\d+(\.\d+)?[,\-?\d+(\.\d+)?]*)}\s(.+))|(([\[\]])(-Inf|\-?\d+(\.\d+)?),(\+?Inf|\-?\d+(\.\d+)?)([\[\]])\s(.+))/;
     /**
      * Gets the plural or singular form of the message specified based on an integer value.
      *
@@ -115,7 +117,6 @@
 
         // Get the explicit rules, If any
         var explicitRules = [];
-        var regex = /{\d+}\s(.+)|\[\d+,\d+\]\s(.+)|\[\d+,Inf\]\s(.+)/;
 
         for (var i = 0; i < messageParts.length; i++) {
             messageParts[i] = messageParts[i].trim();
@@ -247,20 +248,27 @@
          * Beside numbers, you can use -Inf and +Inf for the infinite.
          */
 
-        if(interval[0] == '{')
+        if(regexFiniteSet.test(interval))
         {
-            var index = interval.slice(1, interval.length-1).split(',').indexOf(count.toString());
-            if(index > -1)
+            var set = interval.slice(1, interval.length-1).split(',');
+            for(i = 0; i < set.length; i++)
             {
-                return true;
+                if(set[i] == count)
+                {
+                    return true;
+                }
             }
         }
-        // Only supports inclusive ranges:
-        else if(interval[0] == '[')
+        else
         {
-            var range = interval.replace('Inf', 'Infinity');
+            var left = interval[0],
+                right = interval[interval.length - 1],
+                range = interval.replace('Inf', 'Infinity');
             range = range.slice(1, range.length-1).split(',');
-            if(count >= parseFloat(range[0]) && count <= parseFloat(range[1]))
+
+            if( left === '['? count >= parseFloat(range[0]) : count > parseFloat(range[0])
+                && right === ']'? count <= parseFloat(range[1]) : count < parseFloat(range[1])
+            )
             {
                 return true;
             }
