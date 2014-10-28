@@ -89,7 +89,7 @@
         return this._getMessage(key) !== null;
     };
 
-    var regexFiniteSet = /{(\-?\d+(\.\d+)?[,\-?\d+(\.\d+)?]*)}\s(.+)/;
+    var regexFiniteSet = /{(\-?\d+(\.\d+)?[,\-?\d+(\.\d+)?]*)}/;
     var regex = /({(\-?\d+(\.\d+)?[,\-?\d+(\.\d+)?]*)}\s(.+))|(([\[\]])(-Inf|\-?\d+(\.\d+)?),(\+?Inf|\-?\d+(\.\d+)?)([\[\]])\s(.+))/;
     /**
      * Gets the plural or singular form of the message specified based on an integer value.
